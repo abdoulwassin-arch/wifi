@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>WiFi Connexion | Haut Débit Burkina</title>
+    <meta name="description" content="Connectez-vous au WiFi haut débit. Paiement sécurisé Mobile Money.">
+    <meta name="theme-color" content="#0f172a">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg-primary: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-1: #06b6d4;
+            --accent-2: #8b5cf6;
+            --accent-3: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --border-color: #334155;
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --radius: 20px;
+            --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --orange-color: #ff6600;
+            --moov-color: #e11d48;
+        }
+
+        html { font-size: 16px; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+            color: var(--text-primary);
+            background-image: radial-gradient(ellipse at 10% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
+                              radial-gradient(ellipse at 90% 80%, rgba(139, 92, 246, 0.12) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            animation: fadeUp 0.5s ease-out;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            padding: 20px 16px 16px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .logo-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: white;
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .header h1 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        /* SLIDER PUBLICITAIRE - IMAGES INFINI */
+        .slider-container {
+            position: relative;
+            background: #000;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.8s ease-in-out;
+            height: 100%;
+        }
+
+        .slider-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            position: relative;
+        }
+
+        .slider-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slider-slide .fallback {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+        }
+
+        .slider-slide .fallback i {
+            font-size: 48px;
+            margin-bottom: 12px;
+            opacity: 0.7;
+        }
+
+        .slider-slide .fallback h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .slider-slide .fallback p {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        .slider-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        .slider-overlay.hide { opacity: 0; }
+
+        .slider-overlay .play-icon {
+            font-size: 48px;
+            color: rgba(255, 255, 255, 0.3);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+
+        .slider-timer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .slider-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 10;
+        }
+
+        .slider-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+            width: 0%;
+            transition: width 0.3s linear;
+        }
+
+        .slider-counter {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .slider-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(239, 68, 68, 0.8);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 9px;
+            font-weight: 600;
+            z-index: 10;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .slider-label.done {
+            background: rgba(16, 185, 129, 0.8);
+        }
+
+        /* MENU */
+        .menu-container {
+            background: var(--bg-primary);
+            padding: 10px 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 4px;
+            background: transparent;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
+            gap: 4px;
+        }
+
+        .menu-item i {
+            font-size: 18px;
+            color: var(--text-secondary);
+            transition: all 0.25s;
+        }
+
+        .menu-item span {
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.25s;
+        }
+
+        .menu-item.active {
+            background: rgba(6, 182, 212, 0.12);
+            border-color: rgba(6, 182, 212, 0.25);
+        }
+
+        .menu-item.active i,
+        .menu-item.active span {
+            color: var(--accent-1);
+        }
+
+        .menu-item:active { transform: scale(0.95); }
+
+        /* CONTENU */
+        .content {
+            padding: 16px;
+            max-height: 55vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+
+        .content::-webkit-scrollbar { width: 3px; }
+        .content::-webkit-scrollbar-track { background: transparent; }
+        .content::-webkit-scrollbar-thumb { background: var(--accent-1); border-radius: 10px; }
+
+        .page { display: none; animation: fadePage 0.3s ease; }
+        .page.active-page { display: block; }
+
+        @keyframes fadePage {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* STATUT */
+        .status {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 14px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .status-icon {
+            width: 34px;
+            height: 34px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .status-text h3 { font-size: 12px; color: var(--success); font-weight: 600; }
+        .status-text p { font-size: 10px; color: var(--text-secondary); }
+
+        /* TABLEAU DES TARIFS */
+        .plans-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .plans-table thead {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.2));
+        }
+
+        .plans-table th {
+            padding: 10px 6px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .plans-table td {
+            padding: 10px 6px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 12px;
+        }
+
+        .plans-table tr {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .plans-table tr:hover { background: var(--bg-card-hover); }
+        .plans-table tr.selected {
+            background: rgba(6, 182, 212, 0.1);
+            border-left: 3px solid var(--accent-1);
+        }
+
+        .plan-name { font-weight: 700; color: var(--text-primary); }
+        .plan-price { font-weight: 800; color: var(--accent-1); font-size: 15px; }
+        .plan-validity { font-size: 10px; color: var(--text-secondary); }
+
+        .popular-badge {
+            background: var(--accent-3);
+            color: #0f172a;
+            padding: 2px 8px;
+            border-radius: 30px;
+            font-size: 8px;
+            font-weight: 700;
+            display: inline-block;
+            margin-left: 4px;
+        }
+
+        /* FORMULAIRES */
+        .input-group { margin-bottom: 12px; }
+
+        .input-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 15px;
+            color: var(--text-primary);
+            transition: all 0.3s;
+            font-family: var(--font);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--accent-1);
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
+        }
+
+        .input-group input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+
+        .input-group select option {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        /* LOGOS OPERATEURS */
+        .operator-logos {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin: 8px 0 16px 0;
+            padding: 10px;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .operator-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .operator-logo.orange { border-color: rgba(255, 102, 0, 0.3); }
+        .operator-logo.moov { border-color: rgba(225, 29, 72, 0.3); }
+        .operator-logo.orange.active { background: rgba(255, 102, 0, 0.15); border-color: var(--orange-color); color: var(--orange-color); }
+        .operator-logo.moov.active { background: rgba(225, 29, 72, 0.15); border-color: var(--moov-color); color: var(--moov-color); }
+
+        .operator-logo .logo-placeholder { font-size: 20px; }
+
+        /* CODE USSD */
+        .ussd-code {
+            background: var(--bg-primary);
+            border: 1px dashed var(--accent-1);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--accent-1);
+            margin-bottom: 12px;
+            word-break: break-all;
+        }
+
+        .ussd-code small {
+            display: block;
+            font-size: 10px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            font-family: var(--font);
+            margin-top: 4px;
+        }
+
+        /* BOUTON */
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            font-family: var(--font);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:active { transform: scale(0.97); }
+        .btn-primary:disabled { opacity: 0.6; transform: none; }
+
+        /* ALERTES */
+        .alert {
+            padding: 12px 14px;
+            border-radius: 12px;
+            margin-top: 12px;
+            font-size: 12px;
+            display: none;
+            border: 1px solid transparent;
+            line-height: 1.4;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.12);
+            color: #fca5a5;
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.12);
+            color: #6ee7b7;
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.12);
+            color: #fcd34d;
+            border-color: rgba(245, 158, 11, 0.2);
+        }
+
+        /* INFOS */
+        .info-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 12px;
+            padding: 10px;
+            background: var(--bg-primary);
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+
+        .info-item i { font-size: 13px; color: var(--accent-1); }
+
+        /* BADGES SÉCURITÉ */
+        .secure-badge {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+            font-size: 9px;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        /* FOOTER PRINCIPAL */
+        .footer {
+            background: var(--bg-primary);
+            padding: 12px;
+            text-align: center;
+            font-size: 9px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer a { color: var(--accent-1); text-decoration: none; }
+
+        /* BANDE DÉFILANTE ENTREPRISE */
+        .company-ticker {
+            background: linear-gradient(90deg, #1a1a2e, #16213e, #1a1a2e);
+            padding: 10px 0;
+            border-top: 1px solid var(--border-color);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker-content {
+            display: flex;
+            animation: tickerScroll 20s linear infinite;
+            white-space: nowrap;
+            gap: 40px;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+
+        .ticker-item i {
+            color: var(--accent-1);
+            font-size: 14px;
+        }
+
+        .ticker-item .company-name {
+            font-weight: 700;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .ticker-item .whatsapp-link {
+            color: #25D366;
+            font-weight: 600;
+            -webkit-text-fill-color: #25D366;
+        }
+
+        @keyframes tickerScroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* LOADER */
+        .loader {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.6s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* RESPONSIVE */
+        @media (max-width: 420px) {
+            .container { border-radius: 16px; }
+            .header h1 { font-size: 1.1rem; }
+            .logo-icon { width: 44px; height: 44px; font-size: 20px; }
+            .plans-table td, .plans-table th { font-size: 11px; padding: 8px 4px; }
+            .plan-price { font-size: 13px; }
+            .menu-item i { font-size: 16px; }
+            .menu-item span { font-size: 9px; }
+            .operator-logo { font-size: 10px; padding: 4px 10px; }
+            .ticker-item { font-size: 10px; }
+            .slider-container { height: 160px; }
+        }
+
+        @media (min-width: 600px) { .container { max-width: 440px; } }
+
+        /* AIDE */
+        .help-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .help-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .help-item i {
+            font-size: 18px;
+            color: var(--accent-1);
+            width: 24px;
+            text-align: center;
+        }
+
+        .help-item .help-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .help-item .help-text strong {
+            color: var(--text-primary);
+            display: block;
+            font-weight: 600;
+        }
+
+        .transaction-id {
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 8px;
+            font-family: monospace;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="logo-wrap">
+                <div class="logo-icon">📶</div>
+                <h1>WiFi Zone</h1>
+            </div>
+            <p>Connexion haut débit</p>
+        </div>
+
+        <!-- SLIDER PUBLICITAIRE - 3 IMAGES EN BOUCLE INFINIE -->
+        <div class="slider-container" id="sliderContainer">
+            <div class="slider-track" id="sliderTrack">
+                <!-- Slide 1 -->
+                <div class="slider-slide" data-index="0">
+                    <img src="https://picsum.photos/seed/wifi1/800/400" alt="Publicité 1" loading="lazy" onerror="this.style.display='none'">
+                    <div class="fallback" style="display:none;">
+                        <i class="fas fa-wifi"></i>
+                        <h3>Internet Haut Débit</h3>
+                        <p>Connectez-vous à la vitesse supérieure</p>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="slider-slide" data-index="1">
+                    <img src="https://picsum.photos/seed/wifi2/800/400" alt="Publicité 2" loading="lazy" onerror="this.style.display='none'">
+                    <div class="fallback" style="display:none;">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Offre Spéciale</h3>
+                        <p>Jusqu'à 100 Mbps</p>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="slider-slide" data-index="2">
+                    <img src="https://picsum.photos/seed/wifi3/800/400" alt="Publicité 3" loading="lazy" onerror="this.style.display='none'">
+                    <div class="fallback" style="display:none;">
+                        <i class="fas fa-star"></i>
+                        <h3>WiFi Zone</h3>
+                        <p>Le meilleur du Burkina</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-overlay" id="sliderOverlay">
+                <div class="play-icon">▶</div>
+            </div>
+
+            <div class="slider-label" id="sliderLabel"></div>
+            <div class="slider-timer" id="sliderTimer"></div>
+            <div class="slider-counter" id="sliderCounter"></div>
+
+            <div class="slider-progress">
+                <div class="slider-progress-bar" id="sliderProgressBar"></div>
+            </div>
+        </div>
+
+        <!-- MENU -->
+        <div class="menu-container">
+            <div class="menu-grid">
+                <div class="menu-item active" data-page="home">
+                    <i class="fas fa-home"></i>
+                    <span>Accueil</span>
+                </div>
+                <div class="menu-item" data-page="voucher">
+                    <i class="fas fa-key"></i>
+                    <span>Code</span>
+                </div>
+                <div class="menu-item" data-page="payment">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Paiement</span>
+                </div>
+                <div class="menu-item" data-page="help">
+                    <i class="fas fa-headset"></i>
+                    <span>Aide</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENU -->
+        <div class="content">
+            <!-- PAGE ACCUEIL -->
+            <div id="page-home" class="page active-page">
+                <div class="status">
+                    <div class="status-icon">✓</div>
+                    <div class="status-text">
+                        <h3>Réseau sécurisé</h3>
+                        <p>Chiffrement WPA3 • Serveur local • 99% uptime</p>
+                    </div>
+                </div>
+
+                <table class="plans-table" id="tarifs-table">
+                    <thead>
+                        <tr><th>Forfait</th><th>Prix</th><th>Validité</th></tr>
+                    </thead>
+                    <tbody id="plans-table-body"></tbody>
+                </table>
+
+                <div class="info-section">
+                    <div class="info-item"><i class="fas fa-tachometer-alt"></i> Jusqu'à 100 Mbps</div>
+                    <div class="info-item"><i class="fas fa-download"></i> Illimité</div>
+                    <div class="info-item"><i class="fas fa-clock"></i> 24h/24</div>
+                </div>
+
+                <div class="secure-badge">
+                    <span>🔒 SSL 256 bits</span>
+                    <span>⚡ Fibre optique</span>
+                    <span>🇧🇫 Support local</span>
+                </div>
+            </div>
+
+            <!-- PAGE CODE VOUCHER -->
+            <div id="page-voucher" class="page">
+                <div class="input-group">
+                    <label><i class="fas fa-key" style="margin-right:6px;"></i>Code WiFi</label>
+                    <input type="text" id="voucher-code"  autocomplete="off" inputmode="text">
+                </div>
+                <button class="btn-primary" id="connect-voucher-btn"><i class="fas fa-plug" style="margin-right:8px;"></i>Se connecter</button>
+            </div>
+
+            <!-- PAGE PAIEMENT -->
+            <div id="page-payment" class="page">
+                <div class="operator-logos" id="operatorLogos">
+                    <div class="operator-logo orange active" data-op="orange">
+                        <span class="logo-placeholder" style="color:#ff6600; font-weight:800;">OM</span>
+                        <span>Orange Money</span>
+                    </div>
+                    <div class="operator-logo moov" data-op="moov">
+                        <span class="logo-placeholder" style="color:#e11d48; font-weight:800;">MM</span>
+                        <span>Moov Money</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-phone" style="margin-right:6px;"></i>Numéro Mobile Money</label>
+                    <input type="tel" id="phone-number"  autocomplete="off" inputmode="numeric">
+                </div>
+
+                <div class="input-group" style="display:none;" id="operator-select-group">
+                    <label><i class="fas fa-building" style="margin-right:6px;"></i>Opérateur</label>
+                    <select id="operator">
+                        <option value="orange">Orange Money</option>
+                        <option value="moov">Moov Money</option>
+                    </select>
+                </div>
+
+                <div class="ussd-code" id="ussd-instruction" style="display: none;">
+                    <span id="ussd-code-text">*144#</span>
+                    <small>Composez ce code, suivez les instructions, puis entrez le code reçu</small>
+                </div>
+
+                <div class="input-group" id="otp-group" style="display: none;">
+                    <label><i class="fas fa-shield-alt" style="margin-right:6px;"></i>Code de confirmation</label>
+                    <input type="text" id="otp-code" placeholder="Code à 6 chiffres" autocomplete="off" inputmode="numeric">
+                </div>
+
+                <button class="btn-primary" id="pay-btn"><i class="fas fa-credit-card" style="margin-right:8px;"></i>Payer maintenant</button>
+                <div class="transaction-id" id="transactionId" style="display:none;"></div>
+            </div>
+
+            <!-- PAGE AIDE -->
+            <div id="page-help" class="page">
+                <div class="help-list">
+                    <div class="help-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="help-text"><strong>Support technique</strong>+226 65 78 34 62</div>
+                    </div>
+                    <div class="help-item">
+                        <i class="fab fa-whatsapp" style="color:#25D366;"></i>
+                        <div class="help-text"><strong>WhatsApp</strong>+226 65 78 34 62</div>
+                    </div>
+                    <div class="help-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="help-text"><strong>Email</strong>support@wifizone.bf</div>
+                    </div>
+                    <div class="help-item">
+                        <i class="fas fa-question-circle"></i>
+                        <div class="help-text"><strong>FAQ</strong>Comment obtenir un code ?</div>
+                    </div>
+                    <div class="help-item">
+                        <i class="fas fa-file-contract"></i>
+                        <div class="help-text"><strong>CGU</strong>Conditions générales d'utilisation</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="alert-message" class="alert"></div>
+        </div>
+
+        <!-- BANDE DÉFILANTE ENTREPRISE -->
+        <div class="company-ticker">
+            <div class="ticker-content">
+                <div class="ticker-item">
+                    <i class="fas fa-crown"></i>
+                    <span>Développé par <span class="company-name">WASSA TECHNOLOGIE</span></span>
+                    <i class="fab fa-whatsapp" style="color:#25D366;"></i>
+                    <span><span class="whatsapp-link">+226 65 78 34 62</span></span>
+                    <i class="fas fa-code"></i>
+                    <span>Portail Captif Premium</span>
+                </div>
+                <div class="ticker-item">
+                    <i class="fas fa-crown"></i>
+                    <span>Développé par <span class="company-name">WASSA TECHNOLOGIE</span></span>
+                    <i class="fab fa-whatsapp" style="color:#25D366;"></i>
+                    <span><span class="whatsapp-link">+226 65 78 34 62</span></span>
+                    <i class="fas fa-code"></i>
+                    <span>Portail Captif Premium</span>
+                </div>
+                <div class="ticker-item">
+                    <i class="fas fa-crown"></i>
+                    <span>Développé par <span class="company-name">WASSA TECHNOLOGIE</span></span>
+                    <i class="fab fa-whatsapp" style="color:#25D366;"></i>
+                    <span><span class="whatsapp-link">+226 65 78 34 62</span></span>
+                    <i class="fas fa-code"></i>
+                    <span>Portail Captif Premium</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            © 2025 WiFi Zone • <a href="#">Conditions</a> • <a href="#">Support</a><br>
+            <a href="https://linktr.ee/MomoDigital">linktr.ee/MomoDigital</a>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // CONFIGURATION
+        // ============================================================
+        const CONFIG = {
+            // 3 images publicitaires (remplacez les URLs par vos images)
+            IMAGE_URLS: [
+                "images/image1.JPEG",
+                "images/image2.JPEG",
+                "images/image3.JPEG"
+            ],
+            IMAGE_DURATION: 4, // 4 secondes par image
+            PLANS: [
+                { id: "2h", name: "2 Heures", price: 100, validity: "120 min", popular: false },
+                { id: "4h", name: "4 Heures", price: 200, validity: "240 min", popular: false },
+                { id: "24h", name: "24 Heures", price: 300, validity: "1440 min", popular: true },
+                { id: "week", name: "1 Semaine", price: 1000, validity: "7 jours", popular: false },
+                { id: "month", name: "1 Mois", price: 3000, validity: "30 jours", popular: false }
+            ],
+            USSD_CODES: { orange: "*144#", moov: "*130#" },
+            MERCHANT: "WASSA TECHNOLOGIE",
+            WHATSAPP: "+22665783462"
+        };
+
+        // ============================================================
+        // ÉLÉMENTS DOM
+        // ============================================================
+        const sliderTrack = document.getElementById('sliderTrack');
+        const sliderOverlay = document.getElementById('sliderOverlay');
+        const sliderTimer = document.getElementById('sliderTimer');
+        const sliderCounter = document.getElementById('sliderCounter');
+        const sliderLabel = document.getElementById('sliderLabel');
+        const sliderProgressBar = document.getElementById('sliderProgressBar');
+        const voucherCodeInput = document.getElementById('voucher-code');
+        const connectVoucherBtn = document.getElementById('connect-voucher-btn');
+        const phoneInput = document.getElementById('phone-number');
+        const operatorSelect = document.getElementById('operator');
+        const payBtn = document.getElementById('pay-btn');
+        const ussdInstruction = document.getElementById('ussd-instruction');
+        const ussdCodeSpan = document.getElementById('ussd-code-text');
+        const otpGroup = document.getElementById('otp-group');
+        const otpInput = document.getElementById('otp-code');
+        const alertDiv = document.getElementById('alert-message');
+        const plansTableBody = document.getElementById('plans-table-body');
+        const operatorLogos = document.querySelectorAll('.operator-logo');
+        const transactionIdDiv = document.getElementById('transactionId');
+
+        let selectedPlan = null;
+        let currentStep = "phone";
+        let adWatched = false;
+        let currentPage = "home";
+        let selectedOperator = "orange";
+        let transactionCounter = 0;
+        let currentSlideIndex = 0;
+        let slideInterval = null;
+        let elapsedTime = 0;
+        const IMAGE_DURATION = CONFIG.IMAGE_DURATION; // 4s
+        const TOTAL_IMAGES = CONFIG.IMAGE_URLS.length;
+
+        // ============================================================
+        // LOGOS OPERATEURS
+        // ============================================================
+        operatorLogos.forEach(logo => {
+            logo.addEventListener('click', () => {
+                operatorLogos.forEach(l => l.classList.remove('active'));
+                logo.classList.add('active');
+                selectedOperator = logo.dataset.op;
+                operatorSelect.value = selectedOperator;
+                if (ussdInstruction.style.display !== 'none') {
+                    ussdCodeSpan.textContent = CONFIG.USSD_CODES[selectedOperator];
+                }
+                showAlert(`Opérateur: ${selectedOperator === 'orange' ? 'Orange Money' : 'Moov Money'} sélectionné`, "success");
+            });
+        });
+
+        // ============================================================
+        // SLIDER INFINI - 3 IMAGES (4s chacune)
+        // ============================================================
+        function initSlider() {
+            const slides = sliderTrack.querySelectorAll('.slider-slide');
+            CONFIG.IMAGE_URLS.forEach((url, index) => {
+                if (slides[index]) {
+                    const img = slides[index].querySelector('img');
+                    const fallback = slides[index].querySelector('.fallback');
+                    if (img) {
+                        img.src = url;
+                        img.onerror = function() {
+                            this.style.display = 'none';
+                            if (fallback) fallback.style.display = 'flex';
+                        };
+                        img.onload = function() {
+                            if (fallback) fallback.style.display = 'none';
+                            this.style.display = 'block';
+                        };
+                    }
+                }
+            });
+
+            startInfiniteSlideshow();
+        }
+
+        function startInfiniteSlideshow() {
+            currentSlideIndex = 0;
+            elapsedTime = 0;
+            adWatched = false;
+            sliderLabel.textContent = 'PUB';
+            sliderLabel.classList.remove('done');
+
+            goToSlide(0);
+            updateCounter(0);
+            sliderTimer.textContent = '0s';
+
+            // Mise à jour toutes les secondes
+            slideInterval = setInterval(() => {
+                elapsedTime++;
+                
+                // Calcul du temps écoulé sur l'image actuelle
+                const timeInSlide = elapsedTime % IMAGE_DURATION;
+                const slideIndex = Math.floor(elapsedTime / IMAGE_DURATION) % TOTAL_IMAGES;
+                
+                // Progression de la barre (0-100% sur chaque image)
+                const progress = (timeInSlide / IMAGE_DURATION) * 100;
+                sliderProgressBar.style.width = `${progress}%`;
+                
+                // Mise à jour du timer
+                sliderTimer.textContent = `${timeInSlide}s / ${IMAGE_DURATION}s`;
+                
+                // Changer de slide au début de chaque nouvelle image
+                const newSlideIndex = Math.floor(elapsedTime / IMAGE_DURATION) % TOTAL_IMAGES;
+                if (newSlideIndex !== currentSlideIndex) {
+                    currentSlideIndex = newSlideIndex;
+                    goToSlide(currentSlideIndex);
+                    updateCounter(currentSlideIndex);
+                }
+
+                // Marquer comme visionné après le premier cycle complet (3 images = 12s)
+                if (elapsedTime >= TOTAL_IMAGES * IMAGE_DURATION && !adWatched) {
+                    adWatched = true;
+                    sliderLabel.textContent = '✔ VISIONNÉ';
+                    sliderLabel.classList.add('done');
+                    sliderOverlay.classList.add('hide');
+                    showAlert("✅ Publicités visionnées !", "success");
+                }
+            }, 1000);
+        }
+
+        function goToSlide(index) {
+            const translateX = -index * 100;
+            sliderTrack.style.transform = `translateX(${translateX}%)`;
+        }
+
+        function updateCounter(index) {
+            sliderCounter.textContent = `Image ${index + 1}/${TOTAL_IMAGES}`;
+        }
+
+        // ============================================================
+        // TABLEAU DES TARIFS
+        // ============================================================
+        function loadPlansTable() {
+            plansTableBody.innerHTML = '';
+            CONFIG.PLANS.forEach(plan => {
+                const row = document.createElement('tr');
+                row.dataset.planId = plan.id;
+                row.innerHTML = `
+                    <td class="plan-name">
+                        ${plan.name}
+                        ${plan.popular ? '<span class="popular-badge">⭐ Populaire</span>' : ''}
+                    </td>
+                    <td class="plan-price">${plan.price} F</td>
+                    <td class="plan-validity">${plan.validity}</td>
+                `;
+                row.addEventListener('click', () => {
+                    document.querySelectorAll('#plans-table-body tr').forEach(r => r.classList.remove('selected'));
+                    row.classList.add('selected');
+                    selectedPlan = plan;
+                    showAlert(`Forfait ${plan.name} - ${plan.price} Fcfa sélectionné`, "success");
+                });
+                plansTableBody.appendChild(row);
+            });
+        }
+
+        // ============================================================
+        // NAVIGATION
+        // ============================================================
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+            document.getElementById(`page-${pageId}`).classList.add('active-page');
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.page === pageId);
+            });
+            currentPage = pageId;
+            if (pageId === 'payment') resetPaymentFlow();
+        }
+
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', () => showPage(item.dataset.page));
+        });
+
+        // ============================================================
+        // ALERTES
+        // ============================================================
+        function showAlert(message, type = 'error') {
+            alertDiv.textContent = message;
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.style.display = 'block';
+            clearTimeout(alertDiv._timer);
+            alertDiv._timer = setTimeout(() => { alertDiv.style.display = 'none'; }, 5000);
+        }
+
+        // ============================================================
+        // GÉNÉRATION DE TRANSACTION ID
+        // ============================================================
+        function generateTransactionId() {
+            transactionCounter++;
+            const now = new Date();
+            const dateStr = now.getFullYear().toString().slice(2) +
+                           String(now.getMonth() + 1).padStart(2, '0') +
+                           String(now.getDate()).padStart(2, '0');
+            const random = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+            return `TX-${dateStr}-${random}-${transactionCounter}`;
+        }
+
+        // ============================================================
+        // PAIEMENT
+        // ============================================================
+        function resetPaymentFlow() {
+            currentStep = "phone";
+            phoneInput.value = '';
+            otpInput.value = '';
+            ussdInstruction.style.display = 'none';
+            otpGroup.style.display = 'none';
+            transactionIdDiv.style.display = 'none';
+            payBtn.innerHTML = '<i class="fas fa-credit-card" style="margin-right:8px;"></i>Payer maintenant';
+            payBtn.disabled = false;
+        }
+
+        function generateVoucherCode() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
+            let code = '';
+            for (let i = 0; i < 20; i++) {
+                if (i > 0 && i % 5 === 0) code += '-';
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return code;
+        }
+
+        function getUrlParams() {
+            const params = {};
+            new URLSearchParams(window.location.search).forEach((v, k) => { params[k] = decodeURIComponent(v); });
+            return params;
+        }
+
+        function redirectToInternet(params) {
+            const base = params.base_grant_url;
+            if (base) {
+                let url = base;
+                if (params.challenge) url += (url.includes('?') ? '&' : '?') + `challenge=${params.challenge}`;
+                window.location.href = url;
+            } else {
+                window.location.href = "http://www.google.com";
+            }
+        }
+
+        function requireAdWatch() {
+            if (!adWatched) {
+                showAlert("📺 Veuillez patienter, la publicité est en cours...", "warning");
+                return false;
+            }
+            return true;
+        }
+
+        // --- CONNEXION PAR VOUCHER ---
+        connectVoucherBtn.addEventListener('click', async () => {
+            if (!requireAdWatch()) return;
+            const code = voucherCodeInput.value.trim().toUpperCase();
+            if (!code || code.length < 10) {
+                showAlert("Code invalide");
+                return;
+            }
+            connectVoucherBtn.disabled = true;
+            connectVoucherBtn.innerHTML = '<span class="loader"></span> Vérification...';
+            try {
+                await new Promise(r => setTimeout(r, 1000));
+                const params = getUrlParams();
+                redirectToInternet(params);
+            } catch {
+                showAlert("Code invalide ou expiré. Contactez le support.");
+            } finally {
+                connectVoucherBtn.disabled = false;
+                connectVoucherBtn.innerHTML = '<i class="fas fa-plug" style="margin-right:8px;"></i>Se connecter';
+            }
+        });
+
+        // --- PAIEMENT ---
+        payBtn.addEventListener('click', async () => {
+            if (!requireAdWatch()) return;
+
+            if (currentStep === "phone") {
+                if (!selectedPlan) {
+                    showAlert("Sélectionnez un forfait dans l'onglet Accueil");
+                    return;
+                }
+                const phone = phoneInput.value.trim();
+                if (!phone || phone.length < 8) {
+                    showAlert("Numéro invalide");
+                    return;
+                }
+
+                const operator = selectedOperator;
+                const ussdCode = CONFIG.USSD_CODES[operator];
+                ussdCodeSpan.textContent = ussdCode;
+                ussdInstruction.style.display = 'block';
+                otpGroup.style.display = 'block';
+                currentStep = "otp";
+                payBtn.innerHTML = '<i class="fas fa-check-circle" style="margin-right:8px;"></i>Confirmer paiement';
+                showAlert(`📲 Composez ${ussdCode} sur ${operator === 'orange' ? 'Orange' : 'Moov'} puis entrez le code reçu`, "success");
+            }
+            else if (currentStep === "otp") {
+                const otp = otpInput.value.trim();
+                if (!otp || otp.length < 4) {
+                    showAlert("Entrez le code de confirmation reçu par SMS");
+                    return;
+                }
+
+                payBtn.disabled = true;
+                payBtn.innerHTML = '<span class="loader"></span> Traitement sécurisé...';
+
+                try {
+                    await new Promise(r => setTimeout(r, 2500));
+                    const voucherCode = generateVoucherCode();
+                    const transactionId = generateTransactionId();
+
+                    transactionIdDiv.textContent = `✅ Transaction: ${transactionId} | Code: ${voucherCode}`;
+                    transactionIdDiv.style.display = 'block';
+
+                    const transactionData = {
+                        id: transactionId,
+                        phone: phoneInput.value.trim(),
+                        operator: selectedOperator,
+                        plan: selectedPlan.name,
+                        amount: selectedPlan.price,
+                        voucher: voucherCode,
+                        timestamp: new Date().toISOString(),
+                        merchant: CONFIG.MERCHANT
+                    };
+                    saveToLocalStorage('last_transaction', transactionData);
+
+                    showAlert(`✅ Paiement accepté ! Code WiFi: ${voucherCode}`, "success");
+                    resetPaymentFlow();
+
+                    setTimeout(() => {
+                        const params = getUrlParams();
+                        if (params.base_grant_url) {
+                            redirectToInternet(params);
+                        }
+                    }, 5000);
+
+                } catch (error) {
+                    showAlert("❌ Échec du paiement. Vérifiez votre solde ou réessayez.");
+                } finally {
+                    payBtn.disabled = false;
+                    if (currentStep === "phone") {
+                        payBtn.innerHTML = '<i class="fas fa-credit-card" style="margin-right:8px;"></i>Payer maintenant';
+                    }
+                }
+            }
+        });
+
+        // ============================================================
+        // STOCKAGE LOCAL
+        // ============================================================
+        function saveToLocalStorage(key, value) {
+            try {
+                const encrypted = btoa(JSON.stringify(value));
+                localStorage.setItem(key, encrypted);
+            } catch {}
+        }
+
+        function getFromLocalStorage(key) {
+            try {
+                const data = localStorage.getItem(key);
+                if (data) return JSON.parse(atob(data));
+            } catch {}
+            return null;
+        }
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        function init() {
+            loadPlansTable();
+            
+            // Démarrer le slideshow infini
+            initSlider();
+
+            // Cacher l'overlay après 1.5s
+            setTimeout(() => {
+                sliderOverlay.classList.add('hide');
+            }, 1500);
+
+            showPage('home');
+
+            const saved = getFromLocalStorage('user_phone');
+            if (saved) phoneInput.value = saved;
+
+            phoneInput.addEventListener('change', () => {
+                saveToLocalStorage('user_phone', phoneInput.value);
+            });
+
+            operatorSelect.value = selectedOperator;
+            operatorSelect.addEventListener('change', () => {
+                selectedOperator = operatorSelect.value;
+                operatorLogos.forEach(l => {
+                    l.classList.toggle('active', l.dataset.op === selectedOperator);
+                });
+            });
+
+            console.log(`🚀 Portail Captif - ${CONFIG.MERCHANT}`);
+            console.log(`📱 WhatsApp: ${CONFIG.WHATSAPP}`);
+            console.log(`🖼️ ${CONFIG.IMAGE_URLS.length} images de ${CONFIG.IMAGE_DURATION}s en boucle infinie`);
+        }
+
+        init();
+    </script>
+</body>
+</html>
