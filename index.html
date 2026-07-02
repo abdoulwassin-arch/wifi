@@ -58,7 +58,7 @@
         .header h1 { font-size: 1.2rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .header p { font-size: 0.65rem; color: var(--text-secondary); }
 
-
+        /* SLIDER PUBLICITAIRE */
         .slider-container {
             position: relative; background: #000; overflow: hidden; height: 180px;
         }
@@ -72,7 +72,6 @@
         .slider-slide img {
             width: 100%; height: 100%; object-fit: cover; display: block;
         }
-        /* Fallback si l'image ne charge pas */
         .slider-slide .fallback {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             color: white; padding: 20px; text-align: center; width: 100%; height: 100%;
@@ -325,19 +324,19 @@
             <p>Connexion haut débit • Ouagadougou</p>
         </div>
 
-       
+        <!-- SLIDER PUBLICITAIRE - REMPLACEZ LES URLs PAR VOS IMAGES -->
         <div class="slider-container">
             <div class="slider-track" id="sliderTrack">
                 <div class="slider-slide" data-index="0">
-                    <img src="https://picsum.photos/seed/wifi1/800/400" alt="Publicité 1" loading="lazy">
+                    <img src="/images/image1.jpeg" alt="Publicité 1" loading="lazy">
                     <div class="fallback" style="display:none;"><i class="fas fa-wifi"></i><h3>Internet Haut Débit</h3><p>Connectez-vous à la vitesse supérieure</p></div>
                 </div>
                 <div class="slider-slide" data-index="1">
-                    <img src="https://picsum.photos/seed/wifi2/800/400" alt="Publicité 2" loading="lazy">
+                    <img src="/images/image2.jpeg" alt="Publicité 2" loading="lazy">
                     <div class="fallback" style="display:none;"><i class="fas fa-rocket"></i><h3>Offre Spéciale</h3><p>Jusqu'à 100 Mbps</p></div>
                 </div>
                 <div class="slider-slide" data-index="2">
-                    <img src="https://picsum.photos/seed/wifi3/800/400" alt="Publicité 3" loading="lazy">
+                    <img src="/images/image3.jpeg" alt="Publicité 3" loading="lazy">
                     <div class="fallback" style="display:none;"><i class="fas fa-star"></i><h3>WiFi Zone</h3><p>Le meilleur du Burkina</p></div>
                 </div>
             </div>
@@ -400,7 +399,7 @@
 
                 <div class="input-group">
                     <label><i class="fas fa-phone" style="margin-right:4px;"></i>Numéro Mobile Money</label>
-                    <input type="tel" id="phone-number" autocomplete="off" inputmode="numeric">
+                    <input type="tel" id="phone-number"  autocomplete="off" inputmode="numeric">
                 </div>
 
                 <div id="ussdPreview" class="ussd-preview" style="display:none;">
@@ -417,7 +416,7 @@
             <div id="page-voucher" class="page">
                 <div class="input-group">
                     <label><i class="fas fa-key" style="margin-right:4px;"></i>Code WiFi</label>
-                    <input type="text" id="voucher-code" autocomplete="off" inputmode="text">
+                    <input type="text" id="voucher-code"  autocomplete="off" inputmode="text">
                 </div>
                 <button class="btn-primary" id="connect-voucher-btn"><i class="fas fa-plug" style="margin-right:6px;"></i>Se connecter</button>
             </div>
@@ -474,16 +473,15 @@
             ]
         };
 
-       
-        // SLIDER - 3 IMAGES EN BOUCLE (5s) SANS COMPTEURS
-       
+        // ============================================================
+        // SLIDER - 3 IMAGES EN BOUCLE (5s)
+        // ============================================================
         function initSlider() {
             const track = document.getElementById('sliderTrack');
             const slides = track.querySelectorAll('.slider-slide');
             const totalSlides = slides.length;
             let currentIndex = 0;
 
-            // Gestion des erreurs de chargement des images
             slides.forEach(slide => {
                 const img = slide.querySelector('img');
                 const fallback = slide.querySelector('.fallback');
@@ -496,25 +494,15 @@
                         if (fallback) fallback.style.display = 'none';
                         this.style.display = 'block';
                     };
-                    // Détection automatique du format d'image
-                    const src = img.src.toLowerCase();
-                    const ext = src.split('.').pop();
-                    const supported = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'bmp', 'ico'];
-                    if (!supported.includes(ext) && !src.includes('data:image')) {
-                        // Si format non reconnu, on essaie quand même
-                        console.log('Format image: ' + ext);
-                    }
                 }
             });
 
-            // Fonction de transition
             function goToSlide(index) {
                 const translateX = -index * 100;
                 track.style.transform = `translateX(${translateX}%)`;
                 currentIndex = index;
             }
 
-            // Démarrer la rotation automatique
             function startSlideshow() {
                 goToSlide(0);
                 setInterval(() => {
@@ -523,13 +511,12 @@
                 }, CONFIG.IMAGE_DURATION * 1000);
             }
 
-            // Démarrer après un court délai pour que le DOM soit prêt
             setTimeout(startSlideshow, 100);
         }
 
-       
+        // ============================================================
         // DÉTECTION OPÉRATEUR
-        
+        // ============================================================
         function detectOperator(phone) {
             const clean = phone.replace(/\s/g, '');
             if (clean.length < 2) return null;
@@ -580,9 +567,9 @@
             }
         }
 
-       
+        // ============================================================
         // DÉTECTION EN TEMPS RÉEL
-        
+        // ============================================================
         function updateDetection(phone) {
             const clean = phone.replace(/\s/g, '');
             const orangeDetect = document.getElementById('orangeDetect');
@@ -628,9 +615,9 @@
             return ussd;
         }
 
-       
+        // ============================================================
         // TABLEAU DES TARIFS
-        
+        // ============================================================
         function loadPlansTable() {
             const plansTableBody = document.getElementById('plans-table-body');
             plansTableBody.innerHTML = '';
@@ -662,9 +649,9 @@
             });
         }
 
-        
+        // ============================================================
         // NAVIGATION
-        
+        // ============================================================
         document.querySelectorAll('.menu-item').forEach(item => {
             item.addEventListener('click', () => {
                 document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
@@ -674,9 +661,9 @@
             });
         });
 
-      
+        // ============================================================
         // ALERTES
-        
+        // ============================================================
         function showAlert(message, type = 'error') {
             const alertDiv = document.getElementById('alert-message');
             alertDiv.textContent = message;
@@ -805,12 +792,10 @@
             initSlider();
             generateHelp();
 
-            // Détection en temps réel du numéro
             phoneInput.addEventListener('input', function() {
                 updateDetection(this.value);
             });
 
-            // Sélection des logos opérateurs
             document.querySelectorAll('.operator-logo').forEach(logo => {
                 logo.addEventListener('click', () => {
                     document.querySelectorAll('.operator-logo').forEach(l => l.classList.remove('active'));
